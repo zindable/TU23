@@ -1,0 +1,98 @@
+version: "3.9"
+
+services:
+  traefik:
+    image: "traefik:2.9.1"
+    container_name: "traefik"
+    networks:
+      - proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./traefik/letsencrypt/:/letsencrypt
+      - ./traefik/traefik.yml:/etc/traefik/traefik.yml
+      - ./traefik/rules.yml:/etc/traefik/rules.yml
+      - ./traefik/access_logs/:/etc/traefik/access_logs
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.traefik.rule=Host(`traefik.tu23.ch`)"
+      - "traefik.http.routers.traefik.entrypoints=websecure"
+      - "traefik.http.routers.traefik.service=api@internal"
+      - "traefik.http.routers.traefik.tls=true"
+      - "traefik.docker.network=proxy"
+    restart: unless-stopped
+
+  nodered:
+    image: nodered/node-red:2.2.3-12
+    container_name: nodered
+    networks:
+      - proxy
+    volumes:
+      - /src/nodered:/data
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.nodered.rule=Host(`nodered.tu23.ch`)"
+      - "traefik.http.routers.nodered.entrypoints=websecure"
+      - "traefik.http.routers.nodered.service=nodered"
+      - "traefik.http.services.nodered.loadbalancer.server.port=1880"
+      - "traefik.http.routers.nodered.tls=true"
+      - "traefik.docker.network=proxy"
+    environment:
+      TZ: "Europe/Zurich"
+    restart: unless-stopped
+
+  # mosquitto:
+  #   image: eclipse-mosquitto:2.0.15
+  #   container_name: mosquitto
+  #   ports:
+  #     - 1883:1883
+  #   volumes:
+  #     - /src/mosquitto/data:/mosquitto/data
+  #     - /src/mosquitto/log:/mosquitto/log
+  #     - /src/mosquitto/config:/mosquitto/config
+  #   environment:
+  #     TZ: "Europe/Zurich"
+  #   restart: unless-stopped
+
+  # postgres:
+  #   image: postgres:15.1
+  #   container_name: postgres
+  #   hostname: postgres
+  #   networks:
+  #     - proxy
+  #   volumes:
+  #     - /src/postgres/data:/var/lib/postgresql/data
+  #   environment:
+  #     - POSTGRES_USER=${POSTGRES_USER}
+  #     - POSTGRES_PASSWORD=${POSTGRES_PASS}
+  #   restart: unless-stopped
+    
+  # pgadmin:
+  #   image: dpage/pgadmin4
+  #   container_name: pgadmin
+  #   networks:
+  #     - proxy
+  #   volumes:
+  #     - /src/postgres/pgadmin:/var/lib/pgadmin
+  #   labels:
+  #     - "traefik.enable=true"
+  #     - "traefik.http.routers.pgadmin.rule=Host(`pgadmin.tu23.ch`)"
+  #     - "traefik.http.routers.pgadmin.entrypoints=websecure"
+  #     - "traefik.http.routers.pgadmin.service=pgadmin"
+  #     - "traefik.http.services.pgadmin.loadbalancer.server.port=80"
+  #     - "traefik.http.routers.pgadmin.tls=true"
+  #     - "traefik.docker.network=proxy"
+  #   environment:
+  #     - PGADMIN_DEFAULT_EMAIL=${PGADMIN_EMAIL}
+  #     - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PASS}
+  #   restart: unless-stopped
+
+networks:
+  proxy:
+    name: proxy
+    driver: bridge
+
+

@@ -1,0 +1,43 @@
+---
+- hosts: all
+  gather_facts: false
+  name: all hosts default setup
+
+  vars_files:
+    - config.yml
+    - vault.yml
+
+  tasks:
+    # - name: Add user
+    #   include_tasks: tasks/user.yml
+
+    # - name: Update and install default software
+    #   include_tasks: tasks/software/default.yml
+
+    # - name: Clone project git repo
+    #   include_tasks: tasks/software/repository.yml
+
+- hosts: server
+  gather_facts: false
+  name: install docker
+
+  vars_files:
+    - vault.yml
+
+  tasks:
+    - name: Install Docker
+      include_tasks: tasks/software/docker.yml
+    - name: Start Docker Services
+      include_tasks: tasks/docker-services.yml
+# - hosts: jury
+#   gather_facts: false
+#   name: install jury controller
+
+#   vars_files:
+#     - vault.yml
+
+# tasks:
+#   - name: Install Docker
+#     include_tasks: tasks/software/docker.yml
+#   - name: Start Docker Services
+#     include_tasks: tasks/docker-services.yml

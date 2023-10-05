@@ -1,0 +1,68 @@
+- name: get service facts
+  service_facts:
+
+- name: Install apt packages
+  become: true
+  become_user: root
+  apt:
+    name:
+      - python3-pip
+      - ca-certificates #required for docker install
+      - lsb-release #required for docker install
+      - gnupg #required for docker install
+    state: present
+
+- name: Install pip modules
+  become: true
+  become_user: root
+  ansible.builtin.pip:
+    name:
+      - docker
+      - docker-compose
+    state: present
+
+- name: Add Docker GPG apt Key
+  become: true
+  apt_key:
+    url: https://download.docker.com/linux/debian/gpg
+    state: present
+  when: ansible_facts.services["docker.service"] is not defined
+
+- name: Save the current Debian release version into a variable
+  become: true
+  shell: lsb_release -cs
+  register: debian_version
+  when: ansible_facts.services["docker.service"] is not defined
+
+- name: Add Docker Repository
+  become: true
+  apt_repository:
+    repo: "deb [arch=amd64] https://download.docker.com/linux/debian {{ debian_version.stdout }} stable"
+    state: present
+  when: ansible_facts.services["docker.service"] is not defined
+
+- name: Install Docker
+  become: true
+  tags: install
+  apt:
+    name: "docker-ce"
+    state: present
+    force_apt_get: "yes"
+  when: ansible_facts.services["docker.service"] is not defined
+
+- name: Install Docker Compose
+  become: true
+  tags: install
+  get_url:
+    url: https://github.com/docker/compose/releases/download/v2.9.0/docker-compose-Linux-x86_64
+    dest: "/usr/local/bin/docker-compose"
+    mode: 0755
+  when: ansible_facts.services["docker.service"] is not defined
+
+- name: Add the user docker
+  become: true
+  become_user: root
+  ansible.builtin.user:
+    name: docker
+    create_home: false
+    group: docker

@@ -1,0 +1,22 @@
+- name: Update and upgrade apt packages
+  become: true
+  become_user: root
+  apt:
+    upgrade: yes
+    update_cache: yes
+    cache_valid_time: 3600 #one hour
+
+- name: Install apt packages
+  become: true
+  become_user: root
+  apt:
+    name:
+      - git
+      - curl
+      - neofetch
+      - vim
+      - htop
+      - net-tools
+      - tree
+      - acl
+    state: present
