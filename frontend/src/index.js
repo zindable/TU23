@@ -8,7 +8,6 @@ import { Provider } from "react-redux";
 import thunkMiddleware from "redux-thunk";
 import { createStore, applyMiddleware, compose } from "redux";
 import rootReducer from "./reducers";
-import 'semantic-ui-css/semantic.min.css'
 
 // Hook the redux developer tools browser extension into our store:
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

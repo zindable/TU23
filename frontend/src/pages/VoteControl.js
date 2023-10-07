@@ -5,7 +5,6 @@ import {
   Link,
   withRouter,
 } from "react-router-dom";
-import { Container, Menu, Segment } from "semantic-ui-react";
 
 import { connect } from "react-redux";
 
