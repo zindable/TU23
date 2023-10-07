@@ -1,0 +1,32 @@
+---
+- name: Add the users
+  become: true
+  become_user: root
+  ansible.builtin.user:
+    name: "{{ item.username }}"
+    create_home: true
+  loop: "{{ user }}"
+
+- name: Change user shell to bash
+  become: yes
+  become_user: root
+  ansible.builtin.user:
+    name: "{{ item.username }}"
+    shell: /bin/bash
+  loop: "{{ user }}"
+
+- name: Ensure neofetch is enabled in bashrc
+  become: yes
+  become_user: root
+  ansible.builtin.lineinfile:
+    path: /home/{{item.username}}/.bashrc
+    line: neofetch
+    state: present
+  loop: "{{ user }}"
+
+- name: Remove warranty-warning file (message of the day)
+  become: yes
+  become_user: root
+  ansible.builtin.file:
+    path: /etc/motd
+    state: absent

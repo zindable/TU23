@@ -1,0 +1,44 @@
+################################################################
+# API and dashboard configuration
+################################################################
+api:
+  dashboard: true
+  insecure: true
+
+################################################################
+# Docker configuration backend
+################################################################
+providers:
+  docker:
+    exposedByDefault: false
+  # file:
+  #   filename: "/etc/traefik/rules.yml"
+
+################################################################
+# Traefik Logging
+################################################################
+log:
+  level: DEBUG
+
+################################################################
+# Traefik Access Logs
+################################################################
+accessLog:
+  filePath: "/etc/traefik/access_logs/access.log"
+  bufferingSize: 100
+
+################################################################
+# Entrypoint
+################################################################
+
+entryPoints:
+  web:
+    address: ":80"
+    http:
+      redirections:
+        entryPoint:
+          to: websecure
+          scheme: https
+          permanent: true
+  websecure:
+    address: ":443"

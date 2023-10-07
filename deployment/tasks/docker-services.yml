@@ -1,0 +1,35 @@
+---
+- name: Create project folder
+  become: true
+  copy:
+    src: ../files/docker-services/
+    dest: /src/
+    owner: docker
+    group: docker
+    mode: "0755"
+
+- name: Change permissions
+  become: true
+  ansible.builtin.file:
+    path: "/src/{{ item.path }}"
+    owner: "{{ item.owner }}"
+    group: "{{ item.group }}"
+    mode: "0777"
+  loop:
+    - path: nodered
+      owner: "1000"
+      group: "1000"
+    - path: postgres/pgadmin
+      owner: "5050"
+      group: "0"
+    - path: postgres/data
+      owner: "999"
+      group: "999"
+
+- name: deploy Docker Compose stack
+  become: true
+  become_user: docker
+  community.docker.docker_compose:
+    project_src: /src/
+    files:
+      - docker-compose.yaml
