@@ -2,18 +2,18 @@ all:
   children:
     server:
       hosts:
-        10.0.1.190:
+        10.0.1.128:
           ansible_ssh_user: "ansible"
           ansible_become_pass: "{{ SERVER_become_pass }}"
           ansible_ssh_private_key_file: "/Users/mzindel/.ssh/ZRHINT-NBK001_ansible"
-    # ctl:
-    #   children:
-    #     jury:
-    #       hosts:
-    #         10.0.1.115:
-    #           ansible_ssh_user: "ansible"
-    #           ansible_become_pass: "{{ JURYCTL_become_pass }}"
-    #           ansible_ssh_private_key_file: "/Users/mzindel/.ssh/ZRHINT-NBK001_ansible"
+    ctl:
+      children:
+        jury:
+          hosts:
+            10.0.1.151:
+              ansible_ssh_user: "ansible"
+              ansible_become_pass: "{{ JURYCTL_become_pass }}"
+              ansible_ssh_private_key_file: "/Users/mzindel/.ssh/ZRHINT-NBK001_ansible"
     #     foh:
     #       hosts:
     #         10.0.1.187:
