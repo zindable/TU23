@@ -16,27 +16,13 @@
 
 - hosts: server
   gather_facts: false
-  name: install docker
+  name: install jury controller
 
   vars_files:
     - vault.yml
 
   tasks:
-    - name: Install server software
-      include_tasks: tasks/software/server.yml
-    - name: Install Docker
-      include_tasks: tasks/software/docker.yml
-    - name: Start Docker Services
-      include_tasks: tasks/docker-services.yml
-# - hosts: jury
-#   gather_facts: false
-#   name: install jury controller
-
-#   vars_files:
-#     - vault.yml
-
-# tasks:
-#   - name: Install Docker
-#     include_tasks: tasks/software/docker.yml
+    - name: Install controller
+      include_tasks: tasks/software/controller.yml
 #   - name: Start Docker Services
 #     include_tasks: tasks/docker-services.yml

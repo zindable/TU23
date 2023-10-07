@@ -1,0 +1,15 @@
+- name: Install apt packages
+  become: true
+  become_user: root
+  apt:
+    name:
+      - python3-pip
+    state: present
+
+- name: Install pip modules
+  become: true
+  become_user: root
+  ansible.builtin.pip:
+    name:
+      - paho-mqtt
+    state: present
