@@ -1,0 +1,13 @@
+@font-face{
+    font-family:'digital-7';
+    src: local('digital-7'),url('../fonts/digital-7.ttf')format('truetype');
+   }
+
+.clock
+{  font-family:'digital-7';
+    font-size: 60px;
+    margin-top: -100px;
+    margin: 0;
+    color: #ff0000;
+    text-align: center;
+}

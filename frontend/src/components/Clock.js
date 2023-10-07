@@ -1,4 +1,7 @@
+import { Center } from "@mantine/core";
 import { useState } from "react";
+
+import './Clock.css';
 
 const Clock = () =>{
   let time  = new Date().toLocaleTimeString()
@@ -9,6 +12,12 @@ const Clock = () =>{
     setTime(time)
   }
   setInterval(UpdateTime)
-  return <h1>{ctime}</h1>
+  return <p style={{
+        textAlign: 'center',
+        height: "80px",
+        width: "230px"
+      }}
+      className="clock"
+      >{ctime}</p>
 }
 export default Clock

@@ -8,6 +8,9 @@ import { Provider } from "react-redux";
 import thunkMiddleware from "redux-thunk";
 import { createStore, applyMiddleware, compose } from "redux";
 import rootReducer from "./reducers";
+import { MantineProvider, createTheme } from '@mantine/core';
+
+import '@mantine/core/styles.css';
 
 // Hook the redux developer tools browser extension into our store:
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -21,8 +24,8 @@ const store = createStore(
 );
 
 render(
-  <Provider store={store}>
+  <MantineProvider store={store} defaultColorScheme="dark">
     <App />
-  </Provider>,
+  </MantineProvider>,
   document.getElementById("root")
 );
