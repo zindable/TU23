@@ -4,40 +4,28 @@
   copy:
     src: ../files/docker-services/
     dest: /src/
-    # state: directory
     owner: docker
     group: docker
-    mode: "0777"
+    mode: "0755"
 
-# - name: Copy docker files
-#   become: true
-#   copy:
-#     src: "{{ item.src }}"
-#     dest: "{{ item.dest }}"
-#     owner: "{{ item.owner }}"
-#     group: "{{ item.group }}"
-#     mode: "{{ item.mode }}"
-#   loop:
-#     - src: ../files/docker-services/docker-compose.yaml
-#       dest: /src/docker-compose.yaml
-#       owner: docker
-#       group: docker
-#       mode: "0550"
-#     - src: ../files/docker-services/.env
-#       dest: /src/.env
-#       owner: docker
-#       group: docker
-#       mode: "0550"
-#     - src: ../files/docker-services/traefik/
-#       dest: /src/traefik/
-#       owner: docker
-#       group: docker
-#       mode: "0550"
-#     - src: ../files/docker-services/nodered/
-#       dest: /src/nodered/
-#       owner: "1000"
-#       group: "1000"
-#       mode: "0770"
+- name: Change permissions
+  become: true
+  ansible.builtin.file:
+    path: "/src/{{ item.path }}"
+    owner: "{{ item.owner }}"
+    group: "{{ item.group }}"
+    mode: "0777"
+  loop:
+    - path: nodered
+      owner: "1000"
+      group: "1000"
+    - path: postgres/pgadmin
+      owner: "5050"
+      group: "0"
+    - path: postgres/data
+      owner: "999"
+      group: "999"
+
 - name: deploy Docker Compose stack
   become: true
   become_user: docker

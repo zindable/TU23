@@ -1,0 +1,17 @@
+- name: Install apt packages
+  become: true
+  become_user: root
+  apt:
+    name:
+      - tmux
+    state: present
+
+- name: Copy tmux config
+  become: true
+  copy:
+    # remote_src: yes
+    src: ../../files/config/
+    dest: /home/mzindel/
+    owner: mzindel
+    group: mzindel
+    mode: "0644"
