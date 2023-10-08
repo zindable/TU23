@@ -54,7 +54,7 @@ function Header() {
         <Box bg="black">
             <Group justify="space-between" h="100%">
 
-                <img src="./logo.jpg" width="auto" height="80" />
+                <img src="./logo.jpg" width="auto" height="90" />
 
                 <Group justify="space-between" h="100%">
                     <div className={classes.inner}>

@@ -1,0 +1,25 @@
+.AdminVote::before,
+.AdminVote::after {
+ content: "";
+ display: block;
+ height: 1em;
+ background: repeating-linear-gradient(
+  -45deg,
+  black,
+  black 1em,
+  red 1em,
+  red 2em
+ );
+}
+
+.AdminVote {
+    width:100%;
+    padding: 100px;
+    justify-content: center;
+}
+
+.admintitle {
+    align-content: center;
+    margin:auto;
+
+}

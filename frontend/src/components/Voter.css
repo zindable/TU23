@@ -1,0 +1,25 @@
+@keyframes blink { 
+   50% { border-color: rgb(85, 255, 0); } 
+}
+
+.voter {
+    margin: 8px;
+    padding: 8px;
+    background-color: black;
+    border-radius: 8px;
+    border: 1px solid rgb(53, 53, 53);
+    animation: blink .5s step-end infinite alternate;
+    
+    
+}
+
+.voter p {
+    align-content: center;
+    background-color:rgb(53, 53, 53);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom: 1px solid rgb(53, 53, 53);
+    padding: 0;
+    margin: -8px -8px 8px -8px;
+    text-align: center;
+}
