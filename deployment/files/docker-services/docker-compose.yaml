@@ -30,6 +30,8 @@ services:
     container_name: nodered
     networks:
       - proxy
+    ports:
+      - "1880:1880"
     volumes:
       - /src/nodered:/data
     labels:

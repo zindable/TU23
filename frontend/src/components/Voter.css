@@ -1,5 +1,8 @@
-@keyframes blink { 
+@keyframes blinkGreen { 
    50% { border-color: rgb(85, 255, 0); } 
+}
+@keyframes blinkRed { 
+   50% { border-color: rgb(255, 0, 0); } 
 }
 
 .voter {
@@ -8,9 +11,13 @@
     background-color: black;
     border-radius: 8px;
     border: 1px solid rgb(53, 53, 53);
-    animation: blink .5s step-end infinite alternate;
-    
-    
+}
+
+#green {
+    animation: blinkGreen .5s step-end infinite alternate;   
+}
+#red {
+    animation: blinkRed .5s step-end infinite alternate;   
 }
 
 .voter p {
@@ -22,4 +29,11 @@
     padding: 0;
     margin: -8px -8px 8px -8px;
     text-align: center;
+}
+
+#red p {
+    border-bottom: 1px solid rgb(255, 0, 0);
+}
+#green p {
+    border-bottom: 1px solid rgb(85, 255, 0);
 }

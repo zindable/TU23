@@ -27,12 +27,12 @@ import "./Voter.css"
 
 
 
-function Vote({ jury }) {
+function Vote({ jury, vote }) {
 
     return (
 
         <Group>
-            <div class="voter">
+            <div class="voter" id={vote}>
                 <p>{jury}</p>
                 <SimpleGrid cols={1}>
                     <Choice></Choice>
