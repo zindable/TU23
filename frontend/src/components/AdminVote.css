@@ -14,7 +14,8 @@
 
 .AdminVote {
     width:100%;
-    padding: 100px;
+    padding: auto;
+    margin: auto;
     justify-content: center;
 }
 

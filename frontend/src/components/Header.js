@@ -28,6 +28,7 @@ import Clock from './Clock';
 const links = [
     { link: '/votecontrol', label: 'Vote Control' },
     { link: '/nodered', label: 'NodeRed' },
+    { link: '/projector', label: 'Projector' },
 ];
 
 

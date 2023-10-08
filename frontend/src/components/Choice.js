@@ -6,7 +6,9 @@ import "./Choice.css"
 function Choice() {
 
     return (
-        <div className="circle"></div>
+        <div className="circle">
+            {/* <img src="./tom.jpeg" sizes="100%"></img> */}
+        </div>
     );
 }
 

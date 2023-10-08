@@ -9,19 +9,19 @@ import {
 import Home from "./pages/Home.js";
 import VoteControl from "./pages/VoteControl.js";
 import Login from "./pages/Login.js";
-import Clock from "./components/Clock.js";
 import Header from "./components/Header.js";
-import { connect } from "react-redux";
 import NodeRed from "./pages/NodeRed.js";
+import Projector from "./pages/Projector.js";
 
 function App({ ...props }) {
   return (
     <Router>
-        <Header></Header>
-        <Route exact path="/" render={(props) => (<Home {...props} />)}/>
-        <Route path="/login" component={Login} />
-        <Route path="/votecontrol" component={VoteControl} />
-        <Route path="/nodered" component={NodeRed} />
+      <Header></Header>
+      <Route exact path="/" render={(props) => (<Home {...props} />)} />
+      <Route path="/login" component={Login} />
+      <Route path="/votecontrol" component={VoteControl} />
+      <Route path="/nodered" component={NodeRed} />
+      <Route path="/projector" component={Projector} />
     </Router>
   );
 }
