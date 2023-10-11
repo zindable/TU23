@@ -6,7 +6,6 @@ const initialVoterState = {
 };
 
 function voter(state = initialVoterState, action) {
-  console.log("hi")
   switch (action.type) {
     case "GREEN":
       return { ...state, name: action.voter, vote: "green" };

@@ -1,5 +1,5 @@
 
-const backend = "https://api.tu23.ch";
+const NODEREDURL = "https://nodered.tu23.ch";
 const PROJECTORURL = "http://192.168.1.33";
 
 const projectorToken = ""
@@ -28,7 +28,7 @@ export function projectorHome() {
 
 
 export function moveProjector(direcrion, speed) {
-    const dir = ""
+    var dir;
     switch (direcrion) {
         case "up":
             dir = "vshift_inc"
@@ -55,3 +55,33 @@ export function moveProjector(direcrion, speed) {
     }).then(checkStatus);
 }
 
+
+export function setVote(jury, vote) {
+    var juryid;
+    switch (jury) {
+        case "jury_1":
+            juryid = "jury_1"
+            break;
+        case "jury_2":
+            juryid = "jury_2"
+            break;
+        case "jury_3":
+            juryid = "jury_3"
+            break;
+        default:
+            break
+    }
+
+    console.log(jury);
+
+    fetch(`${NODEREDURL}/${juryid}`, {
+        method: "POST",
+        body: JSON.stringify(vote)
+    })
+}
+
+export function setAllVotes(vote) {
+    setVote("jury_1", vote)
+    setVote("jury_2", vote)
+    setVote("jury_3", vote)
+}

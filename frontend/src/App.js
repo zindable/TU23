@@ -28,7 +28,7 @@ function App({ ...props }) {
   const [jury, setJury] = useState({ jury1: null, jury2: null, jury3: null })
 
   const { lastMessage, readyState } = useWebSocket(WS_URL, {
-    onOpen: () => console.log('opened'),
+    onOpen: () => console.log('WS open'),
     shouldReconnect: (closeEvent) => true,
   });
 
