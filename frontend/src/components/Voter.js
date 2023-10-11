@@ -27,7 +27,7 @@ import "./Voter.css"
 
 
 
-function Vote({ jury, vote }) {
+function Vote({ jury, vote, img }) {
 
     return (
 
@@ -35,7 +35,7 @@ function Vote({ jury, vote }) {
             <div class="voter" id={vote}>
                 <p>{jury}</p>
                 <SimpleGrid cols={1}>
-                    <Choice></Choice>
+                    <Choice vote={vote} img={img} ></Choice>
                     <Center>
                         <SimpleGrid cols={3} verticalSpacing="xl">
                             <Button variant="outline" color="rgba(255, 0, 0, 1)">Red</Button>
@@ -45,7 +45,7 @@ function Vote({ jury, vote }) {
                     </Center>
                 </SimpleGrid>
             </div>
-        </Group>
+        </Group >
     );
 }
 

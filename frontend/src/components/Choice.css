@@ -9,3 +9,5 @@
     width: 100%;
     border-radius: 270px;
 }
+
+.red { filter: brightness(40%)  }

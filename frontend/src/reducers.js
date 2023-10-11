@@ -1,72 +1,46 @@
 import { combineReducers } from "redux";
 
-const initialUserState = {
-  user: null,
-  isLoading: false,
-  error: null,
+const initialVoterState = {
+  name: null,
+  vote: null,
 };
 
-function user(state = initialUserState, action) {
+function voter(state = initialVoterState, action) {
+  console.log("hi")
   switch (action.type) {
-    case "FETCH_ACCOUNT_DETAILS_STARTED":
-      return { ...state, isLoading: true, error: null };
-    case "FETCH_ACCOUNT_DETAILS_SUCCEEDED":
-      return {
-        ...state,
-        isLoading: false,
-        balance: action.balance,
-        user: action.user,
-      };
-    case "FETCH_TRANSACTIONS_FAILED":
-      return { ...state, isLoading: false, error: action.error };
+    case "GREEN":
+      return { ...state, name: action.voter, vote: "green" };
+    case "RED":
+      return { ...state, name: action.voter, vote: "red" };
+    case "RESET":
+      return { ...state, name: action.voter, vote: null };
     default:
       return state;
   }
 }
 
-function getInitialAuthenticationState() {
-  const token = sessionStorage.getItem("token");
-  const user = sessionStorage.getItem("user");
-  if (token && user) {
-    return {
-      isAuthenticated: true,
-      token,
-      user: JSON.parse(user),
-    };
-  } else {
-    return {
-      isAuthenticated: false,
-      token: undefined,
-      user: undefined,
-    };
-  }
+const initialProjectorState = {
+  position: null,
+  isMoving: false,
+  error: null
 }
 
-function authentication(state = getInitialAuthenticationState(), action) {
+function projector(state = initialProjectorState, action) {
   switch (action.type) {
-    case "AUTHENTICATION_SUCCEEDED":
-      return {
-        ...state, // Not necessary because we set all properties, but a
-        // precaution should we later add more properties to this state slice.
-        isAuthenticated: true,
-        token: action.token,
-        user: action.user,
-      };
-    case "SIGNOUT":
-      return {
-        ...state,
-        isAuthenticated: false,
-        token: undefined,
-        user: undefined,
-      };
+    case "MOVE_PROJECTOR_STARTED":
+      return { ...state, isMoving: true, error: null };
+    case "MOVE_PROJECTOR_SUCCEEDED":
+      return { ...state, isMoving: false };
+    case "MOVE_PROJECTOR_FAILED":
+      return { ...state, isMoving: false, error: action.error };
     default:
       return state;
   }
 }
 
 const rootReducer = combineReducers({
-  user,
-  authentication,
+  voter,
+  projector
 });
 
 export default rootReducer;

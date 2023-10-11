@@ -3,12 +3,14 @@ import "./Choice.css"
 
 
 
-function Choice() {
+function Choice({ img, vote }) {
 
     return (
-        <div className="circle">
-            {/* <img src="./tom.jpeg" sizes="100%"></img> */}
-        </div>
+        <>
+            <div className="circle">
+                <img src={img} sizes="100%" class={vote}></img>
+            </div >
+        </>
     );
 }
 

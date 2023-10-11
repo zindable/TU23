@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
+
+
 
 import {
   BrowserRouter as Router,
@@ -31,51 +33,36 @@ import {
   Space
 } from '@mantine/core';
 
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import Choice from "../components/Choice";
 import Voter from "../components/Voter";
 import AdminVote from "../components/AdminVote";
 
-import useWebSocket from 'react-use-websocket';
-const WS_URL = 'ws://10.0.1.128:1880/ws/jury-ctrl';
 
 
 
-function VoteControl({ ...props }) {
 
-  const message = useState('');
-  useWebSocket(WS_URL, {
-    onMessage: (message) => {
-      console.log(message.data)
-    },
-    // share: true,
-    // filter: () => false,
-    onOpen: () => {
-      console.log('WebSocket connection established.');
-    },
-    onClose: () => {
-      console.log('WebSocket connection closed.');
-    }
-  });
 
+function VoteControl({ jury, lastMessage }) {
 
   return (
     <>
+      {lastMessage ? <span>Last message: {lastMessage.data}</span> : null}
       <Center>
         <Grid grow>
           <Grid.Col span={4}>
             <Center>
-              <Voter jury="Bruce (Zizi)" vote=""></Voter>
+              <Voter jury="Bruce (Zizi)" vote={jury.jury1} img="./zizi.jpeg"></Voter>
             </Center>
           </Grid.Col>
           <Grid.Col span={4}>
             <Center>
-              <Voter jury="Ruedi (Tom)" vote="" ></Voter>
+              <Voter jury="Ruedi (Tom)" vote={jury.jury2} img="./tom.jpeg"></Voter>
             </Center>
           </Grid.Col>
           <Grid.Col span={4}>
             <Center>
-              <Voter jury="Jaquline (Joanne)" vote=""></Voter>
+              <Voter jury="Jaquline (Joanne)" vote={jury.jury3} img="./joanne.jpeg"></Voter>
             </Center>
           </Grid.Col>
           <Grid.Col span={12}>

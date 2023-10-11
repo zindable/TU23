@@ -1,8 +1,15 @@
 @keyframes blinkGreen { 
-   50% { border-color: rgb(85, 255, 0); } 
+   50% { 
+    border-color: rgb(85, 255, 0); 
+    box-shadow: 0 0 10px 0px rgb(85, 255, 0)
+} 
 }
 @keyframes blinkRed { 
-   50% { border-color: rgb(255, 0, 0); } 
+   50% {
+    border-color: rgb(255, 0, 0); 
+    box-shadow: 0 0 10px 0px rgb(255, 0, 0)
+} 
+   
 }
 
 .voter {
@@ -14,10 +21,10 @@
 }
 
 #green {
-    animation: blinkGreen .5s step-end infinite alternate;   
+    animation: blinkGreen .5s ease-in-out infinite alternate;   
 }
 #red {
-    animation: blinkRed .5s step-end infinite alternate;   
+    animation: blinkRed .5s ease-in-out infinite alternate;   
 }
 
 .voter p {
