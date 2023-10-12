@@ -63,22 +63,22 @@ def run():
 """)[0]
 
         if usrInput == "1":
-            publish(client, f"message: {0}", "jury_1")
+            publish(client, 1, "jury_1")
             time.sleep(sleep_time)
         if usrInput == "2":
-            publish(client, f"message: {1}", "jury_1")
+            publish(client, 2, "jury_1")
             time.sleep(sleep_time)
         if usrInput == "3":
-            publish(client, f"message: {0}", "jury_2")
+            publish(client, 1, "jury_2")
             time.sleep(sleep_time)
         if usrInput == "4":
-            publish(client, f"message: {1}", "jury_2")
+            publish(client, 2, "jury_2")
             time.sleep(sleep_time)
         if usrInput == "5":
-            publish(client, f"message: {0}", "jury_3")
+            publish(client, 1, "jury_3")
             time.sleep(sleep_time)
         if usrInput == "6":
-            publish(client, f"message: {1}", "jury_3")
+            publish(client, 2, "jury_3")
             time.sleep(sleep_time)
 
 
