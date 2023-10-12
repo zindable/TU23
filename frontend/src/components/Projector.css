@@ -8,9 +8,11 @@
     border-bottom: 1px solid rgb(53, 53, 53);
     border-radius: 8px;
     padding: 16px;
-    margin: 16px;
 }
 
 .projector {
-    margin-top: -32px;
+    margin-top: -16px;
+    margin-bottom: 16px;
+    margin-left: 16px;
+    margin-right: 16px;
 }

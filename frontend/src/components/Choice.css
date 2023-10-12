@@ -3,6 +3,7 @@
     height: 270px;
     background: rgb(53, 53, 53);
     border-radius: 270px;
+    position: relative;
 }
 
 .circle img {
@@ -10,4 +11,21 @@
     border-radius: 270px;
 }
 
-.red { filter: brightness(40%)  }
+
+.circle div {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    border-radius: 270px;
+    z-index: 1000;
+    opacity: 0.5;
+}
+
+div .red {
+    background-color: red;
+}
+ div .green {
+    background-color: greenyellow;
+}
