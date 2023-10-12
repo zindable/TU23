@@ -1,0 +1,41 @@
+
+@keyframes scale {
+  to {
+    transform: scale(1.5);
+  }
+}
+
+@keyframes spin { 
+    0% {
+        transform: rotate(0deg) rotate(-20deg);
+    }    
+    100% {
+        transform: rotate(0deg) rotate(20deg);
+    }
+}
+
+@keyframes blinkRed { 
+   50% {
+    background-color: red;
+    } 
+}
+   
+
+.connectedImg {
+    margin-left: 10px;
+    width: 15px;
+    height: 15px;
+    margin-bottom: -2px;
+    animation: scale 1s ease-in-out infinite alternate;
+}
+
+.disconnectedImg {
+    margin-left: 10px;
+    width: 18px;
+    height: 20px;
+    animation: spin 1s ease-in-out infinite alternate;
+}
+
+.error {
+    animation: blinkRed .5s ease-in-out infinite alternate;   
+}

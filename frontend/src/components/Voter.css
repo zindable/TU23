@@ -1,0 +1,46 @@
+@keyframes blinkGreen { 
+   50% { 
+    border-color: rgb(85, 255, 0); 
+    box-shadow: 0 0 10px 0px rgb(85, 255, 0)
+} 
+}
+@keyframes blinkRed { 
+   50% {
+    border-color: rgb(255, 0, 0); 
+    box-shadow: 0 0 10px 0px rgb(255, 0, 0)
+} 
+   
+}
+
+.voter {
+    margin: 8px;
+    padding: 8px;
+    background-color: black;
+    border-radius: 8px;
+    border: 1px solid rgb(53, 53, 53);
+}
+
+#green {
+    animation: blinkGreen .5s ease-in-out infinite alternate;   
+}
+#red {
+    animation: blinkRed .5s ease-in-out infinite alternate;   
+}
+
+.voter p {
+    align-content: center;
+    background-color:rgb(53, 53, 53);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom: 1px solid rgb(53, 53, 53);
+    padding: 0;
+    margin: -8px -8px 8px -8px;
+    text-align: center;
+}
+
+#red p {
+    border-bottom: 1px solid rgb(255, 0, 0);
+}
+#green p {
+    border-bottom: 1px solid rgb(85, 255, 0);
+}

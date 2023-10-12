@@ -1,0 +1,13 @@
+.circle {
+    width: 270px;
+    height: 270px;
+    background: rgb(53, 53, 53);
+    border-radius: 270px;
+}
+
+.circle img {
+    width: 100%;
+    border-radius: 270px;
+}
+
+.red { filter: brightness(40%)  }
