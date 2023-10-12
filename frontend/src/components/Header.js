@@ -23,6 +23,7 @@ import {
 import { Route, Link, Routes, useLocation } from 'react-router-dom';
 import { useDisclosure } from '@mantine/hooks';
 import classes from './Header.module.css';
+import './Header.css';
 import Clock from './Clock';
 
 const links = [
@@ -32,7 +33,7 @@ const links = [
 ];
 
 
-function Header() {
+function Header({ connectionStatus }) {
     const [active, setActive] = useState(links[0].link);
     const location = useLocation();
 
@@ -49,6 +50,7 @@ function Header() {
             {link.label}
         </Link>
     ));
+
 
 
     return (
@@ -68,7 +70,18 @@ function Header() {
                 <Clock></Clock>
 
             </Group>
-        </Box>
+            <Box bg="rgb(53, 53, 53)">
+                <div class={connectionStatus === "Open" ? "" : "error"}>
+                    <Center>
+                        <span>Server Status</span>
+                        {connectionStatus === "Open"
+                            ? <img class="connectedImg" src="./heart-green.png" width="22" height="20" />
+                            : <img class="disconnectedImg" src="./heart-broken.png" width="22" height="20" />
+                        }
+                    </Center>
+                </div>
+            </Box >
+        </Box >
     );
 }
 

@@ -36,40 +36,42 @@ import {
 import { connect, useDispatch } from "react-redux";
 import Choice from "../components/Choice";
 import Voter from "../components/Voter";
-import AdminVote from "../components/AdminVote";
+import AdminVote from "../components/Admin";
 
-
-
-
+import "./VoteControl.css"
 
 
 function VoteControl({ jury, lastMessage }) {
 
+
+
+
   return (
     <>
-      {lastMessage ? <span>Last message: {lastMessage.data}</span> : null}
-      <Center>
-        <Grid grow>
-          <Grid.Col span={4}>
-            <Center>
-              <Voter jury="Bruce (Zizi)" vote={jury.jury1} img="./zizi.jpeg" juryid="jury_1"></Voter>
-            </Center>
-          </Grid.Col>
-          <Grid.Col span={4}>
-            <Center>
-              <Voter jury="Ruedi (Tom)" vote={jury.jury2} img="./tom.jpeg" juryid="jury_2"></Voter>
-            </Center>
-          </Grid.Col>
-          <Grid.Col span={4}>
-            <Center>
-              <Voter jury="Jaquline (Joanne)" vote={jury.jury3} img="./joanne.jpeg" juryid="jury_3"></Voter>
-            </Center>
-          </Grid.Col>
-          <Grid.Col span={12}>
-            <AdminVote></AdminVote>
-          </Grid.Col>
-        </Grid>
-      </Center>
+      <div class="VoteControl">
+        <Center>
+          <Grid grow>
+            <Grid.Col span={4}>
+              <Center>
+                <Voter jury="Bruce (Zizi)" vote={jury.jury1} img="./zizi.jpeg" juryid="jury_1"></Voter>
+              </Center>
+            </Grid.Col>
+            <Grid.Col span={4}>
+              <Center>
+                <Voter jury="Ruedi (Tom)" vote={jury.jury2} img="./tom.jpeg" juryid="jury_2"></Voter>
+              </Center>
+            </Grid.Col>
+            <Grid.Col span={4}>
+              <Center>
+                <Voter jury="Jaquline (Joanne)" vote={jury.jury3} img="./joanne.jpeg" juryid="jury_3"></Voter>
+              </Center>
+            </Grid.Col>
+            <Grid.Col span={12}>
+              <AdminVote></AdminVote>
+            </Grid.Col>
+          </Grid>
+        </Center>
+      </div>
 
     </>
   );

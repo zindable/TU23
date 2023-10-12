@@ -3,6 +3,7 @@ const NODEREDURL = "https://nodered.tu23.ch";
 const PROJECTORURL = "http://192.168.1.33";
 
 const projectorToken = ""
+const projectorTimeout = 5000
 
 
 function checkStatus(response) {
@@ -55,6 +56,24 @@ export function moveProjector(direcrion, speed) {
     }).then(checkStatus);
 }
 
+export function moveProjectorToStage() {
+    projectorHome()
+    setTimeout(projectorTimeout)
+    for (let i = 0; i < 5; i++) {
+        moveProjector("down", 3)
+        setTimeout(projectorTimeout)
+    }
+}
+
+export function moveProjectorToCircle() {
+    projectorHome()
+    setTimeout(projectorTimeout)
+    for (let i = 0; i < 5; i++) {
+        moveProjector("up", 3)
+        setTimeout(projectorTimeout)
+    }
+}
+
 
 export function setVote(jury, vote) {
     var juryid;
@@ -84,4 +103,13 @@ export function setAllVotes(vote) {
     setVote("jury_1", vote)
     setVote("jury_2", vote)
     setVote("jury_3", vote)
+}
+
+
+export function getShutterState() {
+    return fetch(`${NODEREDURL}/projector`, {
+        method: "GET",
+    })
+        .then(result => result.json())
+
 }

@@ -27,8 +27,14 @@
     color: var(--mantine-color-white);
   }
 
-.link:hover {
-  background-color: green;
-  /* background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-6)); */
 }
+
+img {  
+   user-drag: none;  
+   user-select: none;
+   -moz-user-select: none;
+   -webkit-user-drag: none;
+   -webkit-user-select: none;
+   -ms-user-select: none;
 }
+

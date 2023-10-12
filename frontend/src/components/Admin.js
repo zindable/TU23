@@ -21,8 +21,8 @@ import {
     useMantineTheme,
 } from '@mantine/core';
 
-import "./AdminVote.css"
-import Projector from "../components/Projector";
+import "./Admin.css"
+import Projector from "./Projector";
 
 import * as api from "../api"
 import { useEventListener } from '@mantine/hooks';
@@ -50,16 +50,17 @@ function AdminVote() {
             <div class="AdminVote">
                 <div class="container">
                     <SimpleGrid cols={1} verticalSpacing="xl" bg="black">
-                        <h1 class="admintitle">Admin Vote</h1>
-                        <SimpleGrid cols={3} verticalSpacing="xl">
-                            <Button ref={redbtn} variant="outline" size="md" color="rgba(255, 0, 0, 1)">Red</Button>
-                            <Button ref={resetbtn} variant="filled" size="md" color="rgba(40, 120, 255, 1)">Reset</Button>
-                            <Button ref={greenbtn} variant="outline" size="md" color="rgba(0, 255, 0, 1)">Green</Button>
-                        </SimpleGrid>
+                        <div class="adminVoteContainer">
+                            <SimpleGrid cols={3}>
+                                <Button ref={redbtn} variant="filled" size="md" color="rgba(200, 0, 0, 1)">Red</Button>
+                                <Button ref={resetbtn} variant="filled" size="md" color="rgba(40, 120, 255, 1)">Reset</Button>
+                                <Button ref={greenbtn} variant="filled" size="md" color="rgba(0, 180, 0, 1)">Green</Button>
+                            </SimpleGrid>
+                        </div>
                         <Projector></Projector>
                     </SimpleGrid>
                 </div>
-            </div>
+            </div >
 
         </>
     );

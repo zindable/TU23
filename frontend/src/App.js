@@ -17,11 +17,6 @@ import Projector from "./pages/Projector.js";
 import useWebSocket, { ReadyState } from 'react-use-websocket';
 
 
-class jurymember {
-  name
-  vote
-}
-
 function App({ ...props }) {
   const WS_URL = 'ws://10.0.1.128:1880/ws';
 
@@ -67,10 +62,7 @@ function App({ ...props }) {
 
   return (
     <Router>
-      <Header></Header>
-      <div>
-        <span>The WebSocket is currently {connectionStatus}</span>
-      </div>
+      <Header connectionStatus={connectionStatus}></Header>
       <Route exact path="/" render={(props) => (<Home {...props} />)} />
       <Route exact path="/votecontrol" render={() => (<VoteControl jury={jury} lastMessage={lastMessage} />)} />
       {/* <Route path="/votecontrol" component={VoteControl} /> */}
