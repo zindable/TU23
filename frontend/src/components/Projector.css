@@ -16,3 +16,20 @@
     margin-left: 16px;
     margin-right: 16px;
 }
+
+.state {
+    background-color: black;
+    color: red;
+    text-align: center;
+    border-radius: 4px;
+    font-family:'digital-7';
+    margin: 0px;
+    padding: 0px;
+    font-size: 20px;
+    vertical-align: bottom;
+}
+
+.section > h3 {
+    margin-top: 0;
+    text-align: center;
+}

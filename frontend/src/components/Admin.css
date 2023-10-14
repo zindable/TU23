@@ -17,7 +17,20 @@
     padding: auto;
     margin: auto;
     justify-content: center;
-    max-width: 1800px;
+    
+}
+
+.admin1 {
+    margin: 16px;
+}
+
+.ArmedState {
+    background-color: black;
+    color: red;
+    text-align: center;
+    border-radius: 4px;
+    font-family:'digital-7';
+    font-size: 38px;
 }
 
 .adminVoteContainer{
@@ -25,7 +38,6 @@
     border-bottom: 1px solid rgb(53, 53, 53);
     border-radius: 8px;
     padding: 16px;
-    margin: 16px;
     margin-bottom: 0px;
 }
 

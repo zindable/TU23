@@ -51,9 +51,9 @@ function Vote({ jury, vote, img, juryid }) {
                     <Choice vote={vote} img={img} ></Choice>
                     <Center>
                         <SimpleGrid cols={3} verticalSpacing="xl">
-                            <Button ref={redbtn} variant="outline" color="rgba(255, 0, 0, 1)">Red</Button>
-                            <Button ref={resetbtn} variant="outline" color="rgba(40, 120, 255, 1)">Reset</Button>
-                            <Button ref={greenbtn} variant="outline" color="rgba(0, 255, 0, 1)">Green</Button>
+                            <Button ref={redbtn} variant="outline" color="rgba(255, 0, 0, 1)">FAIL</Button>
+                            <Button ref={resetbtn} variant="outline" color="rgba(40, 120, 255, 1)">RESET</Button>
+                            <Button ref={greenbtn} variant="outline" color="rgba(0, 255, 0, 1)">PASS</Button>
                         </SimpleGrid>
                     </Center>
                 </SimpleGrid>

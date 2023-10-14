@@ -71,8 +71,7 @@ function VoteControl({ jury, lastMessage }) {
             </Grid.Col>
           </Grid>
         </Center>
-      </div>
-
+      </div >
     </>
   );
 }
