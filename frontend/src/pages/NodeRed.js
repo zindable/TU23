@@ -10,7 +10,7 @@ import { connect } from "react-redux";
 
 function NodeRed({ ...props }) {
   return (
-    <iframe src="https://nodered.tu23.ch" height="900px" width="100%"></iframe>
+    <iframe src="https://nodered.tu23.ch" height="950px" width="100%"></iframe>
   );
 }
 
