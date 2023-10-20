@@ -3,20 +3,23 @@ const NODEREDURL = "https://nodered.tu23.ch";
 const PROJECTORURL = "http://192.168.1.33";
 
 const projectorToken = ""
-const projectorTimeout = 5000
+const projectorTimeout = 1000
 
-
-function checkStatus(response) {
-    if (response.status >= 200 && response.status < 300) {
-        return response;
-    } else {
-        const error = new Error(response.statusText);
-        error.response = response;
-        throw error;
-    }
+function moveProjectorWithDelay(i, direcrion, speed) {
+    setTimeout(function () {
+        moveProjector(direcrion, speed)
+    }, i * projectorTimeout);
 }
 
-export function projectorHome() {
+export function setArmState(armState) {
+    return fetch(`${NODEREDURL}/${armState}`, {
+        method: "GET"
+    }).catch((error) => {
+        console.log(error);
+    })
+}
+
+export function moveProjectorToHome() {
     return fetch(`${PROJECTORURL}/cgi-bin/lens_home.cgi`, {
         // TODO: Is there data in the request body?
         method: "POST",
@@ -24,11 +27,15 @@ export function projectorHome() {
             // TODO: check how auth is done
             Authorization: `Bearer ${projectorToken}`,
         }
-    }).then(checkStatus);
+    }).catch((error) => {
+        console.log(error);
+    })
 }
 
 
 export function moveProjector(direcrion, speed) {
+    console.log(direcrion);
+    console.log(speed);
     var dir;
     switch (direcrion) {
         case "up":
@@ -47,31 +54,36 @@ export function moveProjector(direcrion, speed) {
         default:
             break;
     }
+    console.log("Moving projector " + direcrion + " with speed " + speed);
     return fetch(`${PROJECTORURL}/cgi-bin/proj_ctl.cgi?key=lens_${dir}${speed}&lang=e&x=38&y=26`, {
         method: "GET",
         headers: {
             // TODO: check how auth is done
             Authorization: `Bearer ${projectorToken}`,
         }
-    }).then(checkStatus);
+    }).catch((error) => {
+        console.log(error);
+    })
 }
 
 export function moveProjectorToStage() {
-    projectorHome()
-    setTimeout(projectorTimeout)
-    for (let i = 0; i < 5; i++) {
-        moveProjector("down", 3)
-        setTimeout(projectorTimeout)
-    }
+    moveProjectorToHome()
+    const speed = [3, 3, 3, 2, 1]
+    setTimeout(() => {
+        for (let i = 0; i < speed.length; i++) {
+            moveProjectorWithDelay(i, "down", speed[i]);
+        }
+    }, projectorTimeout)
 }
 
 export function moveProjectorToCircle() {
-    projectorHome()
-    setTimeout(projectorTimeout)
-    for (let i = 0; i < 5; i++) {
-        moveProjector("up", 3)
-        setTimeout(projectorTimeout)
-    }
+    moveProjectorToHome()
+    const speed = [3, 3, 3, 2, 1, 1]
+    setTimeout(() => {
+        for (let i = 0; i < speed.length; i++) {
+            moveProjectorWithDelay(i, "up", speed[i])
+        }
+    }, projectorTimeout)
 }
 
 
@@ -91,11 +103,12 @@ export function setVote(jury, vote) {
             break
     }
 
-    console.log(jury);
 
     fetch(`${NODEREDURL}/${juryid}`, {
         method: "POST",
         body: JSON.stringify(vote)
+    }).catch((error) => {
+        console.log(error);
     })
 }
 
@@ -111,5 +124,8 @@ export function getShutterState() {
         method: "GET",
     })
         .then(result => result.json())
+        .catch((error) => {
+            console.log(error);
+        })
 
 }

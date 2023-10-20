@@ -41,7 +41,7 @@ import AdminVote from "../components/Admin";
 import "./VoteControl.css"
 
 
-function VoteControl({ jury, lastMessage }) {
+function VoteControl({ jury, lastMessage, armState }) {
 
 
 
@@ -67,7 +67,7 @@ function VoteControl({ jury, lastMessage }) {
               </Center>
             </Grid.Col>
             <Grid.Col span={12}>
-              <AdminVote></AdminVote>
+              <AdminVote armState={armState} ></AdminVote>
             </Grid.Col>
           </Grid>
         </Center>

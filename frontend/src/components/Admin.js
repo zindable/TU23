@@ -31,9 +31,7 @@ import { useEventListener } from '@mantine/hooks';
 
 
 
-function AdminVote() {
-
-
+function AdminVote(armState) {
 
     const redbtn = useEventListener('click', () => {
         api.setAllVotes(1);
@@ -43,6 +41,14 @@ function AdminVote() {
     });
     const greenbtn = useEventListener('click', () => {
         api.setAllVotes(2);
+    });
+
+
+    const armbtn = useEventListener('click', () => {
+        api.setArmState("arm");
+    });
+    const disarmbtn = useEventListener('click', () => {
+        api.setArmState("disarm");
     });
 
 
@@ -56,8 +62,8 @@ function AdminVote() {
                                 <Grid.Col span={3} >
                                     <div class="adminVoteContainer">
                                         <SimpleGrid cols={2}>
-                                            <Button variant="filled" size="md" color="rgba(200, 0, 0, 1)">ARM</Button>
-                                            <Button variant="filled" size="md" color="rgba(40, 120, 255, 1)">DISARM</Button>
+                                            <Button ref={armbtn} variant="filled" size="md" color="rgba(200, 0, 0, 1)">ARM</Button>
+                                            <Button ref={disarmbtn} variant="filled" size="md" color="rgba(40, 120, 255, 1)">DISARM</Button>
                                         </SimpleGrid>
                                     </div>
                                 </Grid.Col>
@@ -74,7 +80,7 @@ function AdminVote() {
 
                                 <Grid.Col span={3} >
                                     <div class="adminVoteContainer">
-                                        <div class="ArmedState">Armed</div>
+                                        <div class="ArmedState">{armState.armState}</div>
                                     </div>
                                 </Grid.Col>
                             </Grid>

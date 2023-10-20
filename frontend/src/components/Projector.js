@@ -69,6 +69,15 @@ function Projector() {
     const moveProjectorRightSlow = useEventListener('click', () => {
         api.moveProjector("right", 1)
     });
+    const moveProjectorHome = useEventListener('click', () => {
+        api.moveProjectorToHome()
+    });
+    const moveProjectorCircle = useEventListener('click', () => {
+        api.moveProjectorToCircle()
+    });
+    const moveProjectorStage = useEventListener('click', () => {
+        api.moveProjectorToStage()
+    });
 
 
     return (
@@ -79,9 +88,9 @@ function Projector() {
                     <div class="section">
                         <h3>Lens Preset</h3>
                         <SimpleGrid id="verticalalign" cols={1}>
-                            <Button variant="outline" color="white" >Position Circle</Button>
-                            <Button variant="outline" color="white">Home</Button>
-                            <Button variant="outline" color="white">Position Stage</Button>
+                            <Button variant="outline" ref={moveProjectorCircle} color="white" >Position Circle</Button>
+                            <Button variant="outline" ref={moveProjectorHome} color="white">Home</Button>
+                            <Button variant="outline" ref={moveProjectorStage} color="white">Position Stage</Button>
                         </SimpleGrid>
                     </div>
                     <div class="section">
